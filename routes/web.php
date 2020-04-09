@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/tasks', 'TaskController@index')->name('tasks.index');
+Route::post('/tasks', 'TaskController@store')->name('tasks');
+Route::delete('/tasks/{id}', 'TaskController@delete');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
