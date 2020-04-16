@@ -3,37 +3,13 @@
 @section('content')
 
     <div class="card-body">
-{{--        @include('layouts.errors')--}}
-
-{{--        <form action="{{route('favorites.store')}}" method="post" class="form-horizontal">--}}
-{{--            @csrf--}}
-
-{{--            <div class="form-group">--}}
-{{--                <div class="row">--}}
-{{--                    <label for="name-text" class="col-sm-3 control-label">New task:</label>--}}
-{{--                </div>--}}
-
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-3">--}}
-{{--                        <input type="text" name="name" id="name-text" placeholder="Name" class="form-control">--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-3">--}}
-{{--                        <textarea name="description" class="form-control" cols="20" rows="3" placeholder="Description"></textarea>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-6">--}}
-{{--                        <button type="submit" class="btn btn-success">Add task</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </form>--}}
-
         <div class="card">
             <div class="card-header">
                 Сохраненные закладки:
             </div>
 
             <div class="card-body">
-                <a href="{{route('favorites.add')}}" class="btn btn-primary">Добавить закладку</a>
+                <a href="{{route('favorites.create')}}" class="btn btn-primary">Добавить закладку</a>
             </div>
 
             @if (count($favorites) > 0)
@@ -63,6 +39,8 @@
                         </tbody>
                     </table>
                 </div>
+
+                {{$favorites->links()}}
             @else
                 <div class="card-body">
                     Закладок не найдено
@@ -70,4 +48,5 @@
             @endif
         </div>
     </div>
+
 @endsection
