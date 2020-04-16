@@ -13,6 +13,8 @@
 
 Route::get('/favorites', 'FavoriteController@index')->name('favorites.index');
 Route::post('/favorites/{id}', 'FavoriteController@store')->name('favorites.store');
+Route::get('/favorites/add', 'FavoriteController@add')->name('favorites.add');
+Route::get('/favorites/{id}', 'FavoriteController@show')->name('favorites.show');
 
 Auth::routes();
 
