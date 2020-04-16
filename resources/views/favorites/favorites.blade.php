@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="card-body">
-        @include('errors')
+        @include('layouts.errors')
 
-        <form action="{{route('tasks')}}" method="post" class="form-horizontal">
+        <form action="{{route('favorites.store')}}" method="post" class="form-horizontal">
             @csrf
 
             <div class="form-group">

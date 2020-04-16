@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/tasks', 'TaskController@index')->name('tasks.index');
-Route::post('/tasks', 'TaskController@store')->name('tasks');
-Route::delete('/tasks/{id}', 'TaskController@delete');
+Route::get('/favorites', 'FavoriteController@index')->name('favorites.index');
+Route::post('/favorites/{id}', 'FavoriteController@store')->name('favorites.store');
 
 Auth::routes();
 
