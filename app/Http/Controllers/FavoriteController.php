@@ -12,4 +12,10 @@ class FavoriteController extends Controller
         $favorites = Favorite::orderBy('created_at', 'desc')->paginate(5);
         return view('favorites.index', compact('favorites'));
     }
+
+    public function show($id)
+    {
+        $favorite = Favorite::findOrFail($id);
+        return view('favorites.show', compact('favorite'));
+    }
  }
