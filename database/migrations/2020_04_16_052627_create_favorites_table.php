@@ -16,10 +16,10 @@ class CreateFavoritesTable extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('url')->unique()->nullable(false);
-            $table->binary('favicon')->nullable();
+            $table->string('favicon')->nullable();
             $table->string('title')->nullable(false);;
-            $table->string('meta_description')->nullable();
-            $table->string('meta_keywords')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_keywords')->nullable();
             $table->timestamps();
         });
     }

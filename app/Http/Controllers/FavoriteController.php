@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Classes\Facades\DataFavorite;
 use App\Favorite;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\HttpClientKernel;
 
 class FavoriteController extends Controller
 {
@@ -28,16 +29,21 @@ class FavoriteController extends Controller
     public function store(Request $request)
     {
         $validatedPost = $this->validate($request, [
-            'url' => 'required|unique:favorites|max:255'
+            'url' => 'required|url|unique:favorites|max:255'
         ],[
             'required' => 'Поле :attribute должно быть заполнено.',
             'unique' => 'Уже существует закладка с таким :attribute',
             'max' => 'Количество символов в поле :attribute должно быть не больше 255',
+            'url' => 'Неверный формат URL'
         ]);
 
-        //TODO: создать сервис добавления закладки там подключить hhtpClient и phpquery
-        //AddFavorite::getData($validatedPost);
 
-        return redirect()->route('favorites.index');
+        $result = DataFavorite::create($validatedPost);
+
+        if ($result['status'] === 'fail') {
+            return back()->with('error', $result['error'])->withInput();
+        }
+
+        return redirect()->route('favorites.show', $result['favorite']);
     }
  }

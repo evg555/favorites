@@ -28,7 +28,7 @@
                                     <td class="table-text">{{$favorite->created_at->format('d.m.Y')}}</td>
                                     <td>
                                         @if (!empty($favorite->favicon))
-                                            <img class="img-fluid" src="data:image/png;base64,'{{base64_encode($favorite->favicon)}}" alt="">
+                                            <img class="img-fluid" width="24" height="24" src="{{$favorite->favicon}}" alt="">
                                         @endif
                                     </td>
                                     <td class="table-text">{{$favorite->url}}</td>
@@ -38,9 +38,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
 
-                {{$favorites->links()}}
+                    {{$favorites->links()}}
+                </div>
             @else
                 <div class="card-body">
                     Закладок не найдено

@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.38 on 2020-04-16 04:47:10.
+ * Generated for Laravel 5.8.38 on 2020-04-18 11:59:58.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14601,6 +14601,29 @@ namespace Illuminate\Support {
  
 }
 
+namespace App\Classes\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class DataFavorite {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function create($postData)
+        {
+                        /** @var \App\Classes\DataFavorite $instance */
+                        return $instance->create($postData);
+        }
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     /**
@@ -18000,6 +18023,8 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class DataFavorite extends \App\Classes\Facades\DataFavorite {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
  
