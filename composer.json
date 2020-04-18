@@ -70,7 +70,7 @@
         ],
         "post-install-cmd" : [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php -r \"dir_exists('/public/upload') || mkdir(',/public/upload')\"",
+            "@php -r \"file_exists('public/upload') || mkdir('public/upload');\"",
             "@php artisan key:generate --ansi"
         ]
     }
