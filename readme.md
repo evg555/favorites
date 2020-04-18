@@ -2,9 +2,13 @@
 
 
 #### Установка и настройка
-Создать файл окружения
+Установить все необходимые библиотеки и собрать фронтенд
 
-`cp .env.example .env`
+`composer install`
+
+`npm install`
+
+`npm run dev`
 
 Создать БД для приложения и указать настройки подключения к БД в файле .env
 
@@ -16,18 +20,6 @@ DB_DATABASE=app
 DB_USERNAME=root
 DB_PASSWORD=
 ~~~~
-
-Установить все необходимые библиотеки и собрать фронтенд
-
-`composer install`
-
-`npm install`
-
-`npm run dev`
-
-Сгенерировать ключ приложения
-
-`php artisan key:generate`
 
 Запустить миграции
 

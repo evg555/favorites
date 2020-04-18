@@ -67,6 +67,11 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta"
+        ],
+        "post-install-cmd" : [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php -r \"dir_exists('/public/upload') || mkdir(',/public/upload')\"",
+            "@php artisan key:generate --ansi"
         ]
     }
 }
