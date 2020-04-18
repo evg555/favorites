@@ -17,17 +17,21 @@ DB_USERNAME=root
 DB_PASSWORD=
 ~~~~
 
-Запустить миграции
-
-`php artisan migrate`
-
 Установить все необходимые библиотеки и собрать фронтенд
 
 `composer install`
 
 `npm install`
 
-`npm run prod`
+`npm run dev`
+
+Сгенерировать ключ приложения
+
+`php artisan key:generate`
+
+Запустить миграции
+
+`php artisan migrate`
 
 Запустить сервер (по необходимости)
 
