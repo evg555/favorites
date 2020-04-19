@@ -39,6 +39,7 @@ class DataFavorite
     {
         try {
             $this->url = preg_replace('/\?.*/','', $postData['url']);
+            $this->url = str_replace('https','http', $this->url);
 
             if ($id = Favorite::where('url', '=', $this->url)->count()) {
                 $this->setError("Уже существует закладка с таким url");
