@@ -38,7 +38,13 @@ class DataFavorite
     public function create($postData)
     {
         try {
-            $this->url = $postData['url'];
+            $this->url = preg_replace('/\?.*/','', $postData['url']);
+
+            if ($id = Favorite::where('url', '=', $this->url)->count()) {
+                $this->setError("Уже существует закладка с таким url");
+                return $this->result;
+            }
+
             $isData = $this->get();
 
             if ($isData) {
@@ -52,7 +58,6 @@ class DataFavorite
         } catch (QException $e) {
             $this->setError("Ошибка сохранения в БД");
         }
-
 
         return $this->result;
     }
