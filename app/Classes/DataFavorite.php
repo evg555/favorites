@@ -45,8 +45,6 @@ class DataFavorite
                 $this->parse();
                 $this->save();
             }
-        } catch (RequestException $e) {
-            $this->setError("Неверный формат URL");
         } catch (ClientException $e) {
             $this->setError("Страницы {$this->url} не существует");
         } catch (ServerException $e) {
@@ -73,7 +71,7 @@ class DataFavorite
             $filePath = $_SERVER['DOCUMENT_ROOT'] . $this->favicon;
 
             $file = fopen($filePath,'w');
-            $this->httpClient->get($url, ['sink' => $filePath]);
+            $this->httpClient->get($url, ['sink' => $filePath, 'http_errors' => false]);
             fclose($file);
         }
 
