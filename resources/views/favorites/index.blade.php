@@ -10,6 +10,7 @@
 
             <div class="card-body">
                 <a href="{{route('favorites.create')}}" class="btn btn-primary">Добавить закладку</a>
+                <a href="{{route('favorites.export')}}" class="btn btn-primary">Экспорт в Excel</a>
             </div>
 
             @if (count($favorites) > 0)

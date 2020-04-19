@@ -13,6 +13,7 @@
         "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "phpoffice/phpspreadsheet": "^1.11",
         "simplehtmldom/simplehtmldom": "^2.0@RC"
     },
     "require-dev": {

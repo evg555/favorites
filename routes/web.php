@@ -18,4 +18,5 @@ Route::get('/', function() {
 Route::get('/favorites', 'FavoriteController@index')->name('favorites.index');
 Route::post('/favorites/', 'FavoriteController@store')->name('favorites.store');
 Route::get('/favorites/create', 'FavoriteController@create')->name('favorites.create');
+Route::get('/favorites/export', 'FavoriteController@export')->name('favorites.export');
 Route::get('/favorites/{id}', 'FavoriteController@show')->name('favorites.show');
