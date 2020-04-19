@@ -10,6 +10,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 
 class FavoriteController extends Controller
 {
@@ -20,10 +21,23 @@ class FavoriteController extends Controller
         'Заголовок страницы'
     ];
 
-    public function index()
+    public function index(Request $request)
     {
-        $favorites = Favorite::orderBy('created_at', 'desc')->paginate(5);
-        return view('favorites.index', compact('favorites'));
+        $params = $request->all();
+        $columns = DB::getSchemaBuilder()->getColumnListing('favorites');
+
+        if (!isset($params['order']) || !in_array($params['order'], $columns)) {
+            $params = [
+                'order' => 'created_at',
+            ];
+        }
+
+        if (!isset($params['by']) || !in_array($params['by'], ['desc','asc'])) {
+            $params['by'] = 'desc';
+        }
+
+        $favorites = Favorite::orderBy($params['order'], $params['by'])->paginate(5);
+        return view('favorites.index', compact('favorites', 'params'));
     }
 
     public function show($id)

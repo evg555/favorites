@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="card-body">
         <div class="card">
             <div class="card-header">
@@ -20,10 +19,28 @@
                 <div class="card-body">
                     <table class="table table-striped task-table">
                         <thead>
-                            <th>Дата добавления</th>
+                            <th>Дата добавления
+                                @if ($params['order'] === 'created_at' && $params['by'] === 'asc')
+                                    <a href="{{route('favorites.index', ['order' => 'created_at','by' => 'desc'])}}"><i class="fa fa-sort-down"></i></a>
+                                @else
+                                    <a href="{{route('favorites.index', ['order' => 'created_at','by' => 'asc'])}}"><i class="fa fa-caret-up"></i></a>
+                                @endif
+                            </th>
                             <th>Favicon</th>
-                            <th>URL страницы</th>
-                            <th>Заголовок страницы</th>
+                            <th>URL страницы
+                                @if ($params['order'] === 'url' && $params['by'] === 'asc')
+                                    <a href="{{route('favorites.index', ['order' => 'url','by' => 'desc'])}}"><i class="fa fa-sort-down"></i></a>
+                                @else
+                                    <a href="{{route('favorites.index', ['order' => 'url','by' => 'asc'])}}"><i class="fa fa-caret-up"></i></a>
+                                @endif
+                            </th>
+                            <th>Заголовок страницы
+                                @if ($params['order'] === 'title' && $params['by'] === 'asc')
+                                    <a href="{{route('favorites.index', ['order' => 'title','by' => 'desc'])}}"><i class="fa fa-sort-down"></i></a>
+                                @else
+                                    <a href="{{route('favorites.index', ['order' => 'title','by' => 'asc'])}}"><i class="fa fa-caret-up"></i></a>
+                                @endif
+                            </th>
                             <th>Подробнее</th>
                         </thead>
                         <tbody>
@@ -43,7 +60,7 @@
                         </tbody>
                     </table>
 
-                    {{$favorites->links()}}
+                    {{$favorites->appends($params)->links()}}
                 </div>
             @else
                 <div class="card-body">
