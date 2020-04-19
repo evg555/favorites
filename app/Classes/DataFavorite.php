@@ -67,8 +67,8 @@ class DataFavorite
             //Получаем favicon
             $parsedUrl = parse_url($this->url, PHP_URL_HOST);
             $url = $parsedUrl . '/favicon.ico';
-            $this->favicon = Config::get('app.upload_dir') . '/' . md5(time()). '.ico';
-            $filePath = $_SERVER['DOCUMENT_ROOT'] . $this->favicon;
+            $this->favicon = md5(time()). '.ico';
+            $filePath = $_SERVER['DOCUMENT_ROOT'] . Config::get('app.upload_dir') . '/' . $this->favicon;
 
             $file = fopen($filePath,'w');
             $this->httpClient->get($url, ['sink' => $filePath, 'http_errors' => false]);

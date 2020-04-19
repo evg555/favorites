@@ -10,7 +10,10 @@
 
             <div class="card-body">
                 <a href="{{route('favorites.create')}}" class="btn btn-primary">Добавить закладку</a>
-                <a href="{{route('favorites.export')}}" class="btn btn-primary">Экспорт в Excel</a>
+
+                @if (count($favorites) > 0)
+                    <a href="{{route('favorites.export')}}" class="btn btn-primary">Экспорт в Excel</a>
+                @endif
             </div>
 
             @if (count($favorites) > 0)
@@ -29,7 +32,7 @@
                                     <td class="table-text">{{$favorite->created_at->format('d.m.Y')}}</td>
                                     <td>
                                         @if (!empty($favorite->favicon))
-                                            <img class="img-fluid" width="24" height="24" src="{{$favorite->favicon}}" alt="">
+                                            <img class="img-fluid" width="24" height="24" src="{{Config::get('app.upload_dir') . '/' . $favorite->favicon}}" alt="">
                                         @endif
                                     </td>
                                     <td class="table-text">{{$favorite->url}}</td>

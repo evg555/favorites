@@ -8,7 +8,7 @@
             <h1>{{$favorite->title}}</h1>
             <p>Favicon:
                 @if (!empty($favorite->favicon))
-                    <img class="img-fluid" width="24" height="24" src="{{$favorite->favicon}}" alt="">
+                    <img class="img-fluid" width="24" height="24" src="{{Config::get('app.upload_dir') . '/' . $favorite->favicon}}" alt="">
                 @endif
             </p>
             <p>Дата создания: {{$favorite->created_at->format('d.m.Y')}}</p>
