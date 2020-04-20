@@ -57,8 +57,8 @@ class DataFavorite
             $this->setError("Хост не доступен или не отвечает");
         } catch (ClientException $e) {
             $this->setError("Страницы {$this->url} не существует");
-        } catch (ServerException $e) {
-            $this->setError("Сервер не отвечает");
+        } catch (RequestException $e) {
+            $this->setError('Ошибка в параметрах запроса');
         } catch (QException $e) {
             $this->setError("Ошибка сохранения в БД");
         }
