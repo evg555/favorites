@@ -6,6 +6,7 @@ use App\Favorite;
 use Doctrine\DBAL\Query\QueryException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ConnectException;
 use simplehtmldom\HtmlDocument;
 use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Exception\ClientException;
@@ -52,6 +53,8 @@ class DataFavorite
                 $this->parse();
                 $this->save();
             }
+        } catch (ConnectException $e) {
+            $this->setError("Хост не доступен или не отвечает");
         } catch (ClientException $e) {
             $this->setError("Страницы {$this->url} не существует");
         } catch (ServerException $e) {
