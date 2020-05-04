@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Classes\Facades\DataFavorite;
 use App\Favorite;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\RichText\RichText;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\FavoriteCreateRequest;
 
 class FavoriteController extends Controller
 {
@@ -51,19 +49,9 @@ class FavoriteController extends Controller
         return view('favorites.create');
     }
 
-    public function store(Request $request)
+    public function store(FavoriteCreateRequest $request)
     {
-        $validatedPost = $this->validate($request, [
-            'url' => 'required|url|unique:favorites|max:255'
-        ],[
-            'required' => 'Поле :attribute должно быть заполнено.',
-            'unique' => 'Уже существует закладка с таким :attribute',
-            'max' => 'Количество символов в поле :attribute должно быть не больше 255',
-            'url' => 'Неверный формат URL'
-        ]);
-
-
-        $result = DataFavorite::create($validatedPost);
+        $result = DataFavorite::create($request->all());
 
         if ($result['status'] === 'fail') {
             return back()->with('error', $result['error'])->withInput();
@@ -74,6 +62,7 @@ class FavoriteController extends Controller
 
     public function export(Spreadsheet $spreadSheet)
     {
+        //TODO: вынести в отдельный класс
         $favorites = Favorite::orderBy('created_at', 'desc')
                          ->select(['created_at','favicon','url','title'])
                          ->get()
